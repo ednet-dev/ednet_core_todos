@@ -2,7 +2,7 @@ part of todo_mvc;
 
 // lib/gen/todo/mvc/tasks.dart
 
-abstract class TaskGen extends ConceptEntity<Task> {
+abstract class TaskGen extends Entity<Task> {
 
   TaskGen(Concept concept) : super.of(concept);
 
