@@ -37,7 +37,7 @@ library todo_mvc_app;
 import "dart:convert";
 import "dart:html";
 
-import 'package:dartling/dartling.dart';
+import 'package:ednet_core/ednet_core.dart';
 
 import 'package:todo_mvc/todo_mvc.dart';
 

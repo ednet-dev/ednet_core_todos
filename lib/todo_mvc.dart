@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 library todo_mvc;
 
-import "package:dartling/dartling.dart";
+import "package:ednet_core/ednet_core.dart";
 
 part "todo/mvc/json/data.dart";
 part "todo/mvc/json/model.dart";

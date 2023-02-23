@@ -1,6 +1,6 @@
 // test/todo/mvc/todo_mvc_gen.dart
 
-import "package:dartling/dartling.dart";
+import "package:ednet_core/ednet_core.dart";
 
 import "package:todo_mvc/todo_mvc.dart";
 
