@@ -6,7 +6,7 @@ import "package:ednet_core/ednet_core.dart";
 
 import "package:todo_mvc/todo_mvc.dart";
 
-testTodoMvc(Repo repo, String domainCode, String modelCode) {
+testTodoMvc(Repository repo, String domainCode, String modelCode) {
   TodoModels models;
   DomainSession session;
   MvcEntries entries;
