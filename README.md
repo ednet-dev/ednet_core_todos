@@ -1,6 +1,6 @@
 #Todo.Mvc (dartling_todos)
 
-## Categories: MVC, dartling, DOM
+## Categories: MVC, EDNetCore, DOM
 
 ## Description
 
@@ -13,7 +13,7 @@ Dependent on [EDNetCore] (https://github.com/ednet-dev/ednet_core).
 After cloning it, open the project in Dart Editor.
 
 See [todo_mvc_spirals] (https://github.com/dzenanr/todo_mvc_spirals)
-for transitions from todomvc in Dart to Todo.Mvc in dartling.
+for transitions from todomvc in Dart to Todo.Mvc in EDNetCore.
 The dartling_todos application is the spiral 10.
 
 See [dartling_todo_mvc_spirals] (https://github.com/dzenanr/dartling_todo_mvc_spirals)
