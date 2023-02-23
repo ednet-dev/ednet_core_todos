@@ -3,7 +3,7 @@ part of todo_mvc;
 // http://www.json.org/
 // http://jsonformatter.curiousconcept.com/
 
-// lib/dartling/skeleton/json/model.dart
+// lib/ednet_core/skeleton/json/model.dart
 
 var todoMvcModelJson = r'''
 {

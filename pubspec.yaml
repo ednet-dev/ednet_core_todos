@@ -1,9 +1,11 @@
 name: todo_mvc
 version: 0.0.9
-author: Dzenan Ridjanovic <dzenanr@gmail.com>
-description: Todo.Mvc is a demo, done with Dartling, of the TodoMVC project. Based on TodoMVC in Dart. Dartling is a domain model framework for web application prototypes. A new dartling project is copied and adapted from dartling_skeleton.
+
+description: Todo.Mvc is a demo, done with EDNetCore, of the TodoMVC project. Based on TodoMVC in Dart. EDNetCore is a domain model framework for web application prototypes. A new dartling project is copied and adapted from dartling_skeleton.
 homepage: http://ondart.me/
+
 dependencies:
-  browser: any
-  dartling: any
-  dartling_default_app: any
+  ednet_core:
+    path: ../../../ednet_cms/packages/ednet_core
+  ednet_core_default_app:
+    path: ../ednet_dartling_default_app

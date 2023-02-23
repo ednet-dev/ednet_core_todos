@@ -125,7 +125,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
       expect(generateTasks.source.isEmpty, isFalse);
 
       var programmingTask = new Task(concept);
-      programmingTask.title = 'dartling programming';
+      programmingTask.title = 'ednet_core programming';
       var added = generateTasks.add(programmingTask);
       expect(added, isTrue);
 
@@ -174,7 +174,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
     test('Copy Equality', () {
       var task = new Task(concept);
       expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
+      task.title = 'writing a tutorial on EDNetCore';
       tasks.add(task);
       expect(tasks.length, equals(++length));
 
@@ -213,19 +213,19 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
     test('Update New Task Title with Failure', () {
       var task = new Task(concept);
       expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
+      task.title = 'writing a tutorial on EDNetCore';
       tasks.add(task);
       expect(tasks.length, equals(++length));
 
       var copiedTask = task.copy();
-      copiedTask.title = 'writing a paper on Dartling';
+      copiedTask.title = 'writing a paper on EDNetCore';
       // Entities.update can only be used if oid, code or id set.
       expect(() => tasks.update(task, copiedTask), throws);
     });
     test('Update New Task Oid with Success', () {
       var task = new Task(concept);
       expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
+      task.title = 'writing a tutorial on EDNetCore';
       tasks.add(task);
       expect(tasks.length, equals(++length));
 
@@ -254,7 +254,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
     test('Add Task Undo and Redo', () {
       var task = new Task(concept);
       expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
+      task.title = 'writing a tutorial on EDNetCore';
 
       var action = new AddAction(session, tasks, task);
       action.doit();
@@ -284,7 +284,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
     test('Add Task Undo and Redo with Session', () {
       var task = new Task(concept);
       expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
+      task.title = 'writing a tutorial on EDNetCore';
 
       var action = new AddAction(session, tasks, task);
       action.doit();
@@ -347,7 +347,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
 
       models.startActionReaction(reaction);
       var task = new Task(concept);
-      task.title = 'validate dartling documentation';
+      task.title = 'validate ednet_core documentation';
 
       var session = models.newSession();
       var addAction = new AddAction(session, tasks, task);
@@ -355,7 +355,7 @@ testTodoMvc(Repository repo, String domainCode, String modelCode) {
       expect(tasks.length, equals(++length));
       expect(reaction.reactedOnAdd, isTrue);
 
-      var title = 'documenting dartling';
+      var title = 'documenting ednet_core';
       var setAttributeAction =
           new SetAttributeAction(session, task, 'title', title);
       setAttributeAction.doit();
