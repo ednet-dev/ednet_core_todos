@@ -1,6 +1,6 @@
 part of todo_mvc;
 
-// lib/gen/todo/mvc/entries.dart
+// lib/gen/todo/mvc/model_entries.dart
 
 class MvcEntries extends ModelEntries {
 
@@ -14,7 +14,7 @@ class MvcEntries extends ModelEntries {
     return entries;
   }
 
-  Entities newEntities(String conceptCode) {
+  Entities? newEntities(String conceptCode) {
     var concept = model.concepts.singleWhereCode(conceptCode);
     if (concept == null) {
       throw new ConceptError("${conceptCode} concept does not exist.") ;
@@ -24,7 +24,7 @@ class MvcEntries extends ModelEntries {
     }
   }
 
-  Entity newEntity(String conceptCode) {
+  Entity? newEntity(String conceptCode) {
     var concept = model.concepts.singleWhereCode(conceptCode);
     if (concept == null) {
       throw new ConceptError("${conceptCode} concept does not exist.") ;
