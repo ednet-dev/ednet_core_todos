@@ -1,4 +1,4 @@
-github.txt for dartling_todos 
+github.txt for ednet_core_todos
 
 GitHub, Git
 
@@ -27,17 +27,17 @@ http://help.github.com/create-a-repo/
 
 Create a New Repo at GitHub 
 (without README, since cloning will not be used).
-Repository Name: dartling_todos
+Repository Name: ednet_core_todos
 Description: 
   Based on TodoMVC. Adapted for EDNetCore from TodoMvc in Dart.
       
 Next steps:
-  cd git/dart/dartling_spirals/dartling_todos
+  cd git/dart/ednet_core_spirals/ednet_core_todos
   git init
   git status
   git add .
   git commit -m 'initial version'
-  git remote add origin https://github.com/dzenanr/dartling_todos.git
+  git remote add origin https://github.com/ednet-dev/ednet_core_todos.git
   git push -u origin master     
 
 -------------------------------------------------------------------------------
@@ -46,15 +46,15 @@ Git with Git Bash
 
 Clone a remote repository into a local repository.
 
-cd git/dart/dartling_spirals
-git clone https://github.com/dzenanr/dartling_todos.git
-cd dartling_todos
+cd git/dart/ednet_core_spirals
+git clone https://github.com/ednet-dev/ednet_core_todos.git
+cd ednet_core_todos
 
 Read+Write:
-https://github.com/dzenanr/dartling_todos.git
+https://github.com/ednet-dev/ednet_core_todos.git
 
 Read only:
-git://github.com/dzenanr/dartling_todos.git
+git://github.com/ednet-dev/ednet_core_todos.git
 
 Get the latest changes from the remote repository
 
@@ -66,7 +66,7 @@ git pull origin master
 
 Work with a local repository
 
-cd git/dart/dartling_spirals/dartling_todos
+cd git/dart/ednet_core_spirals/ednet_core_todos
 
 git status
 

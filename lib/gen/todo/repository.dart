@@ -2,7 +2,7 @@ part of todo_mvc;
 
 // lib/gen/todo/repository.dart
 
-class TodoRepo extends Repository {
+class TodoRepo extends CoreRepository {
 
   static final todoDomainCode = "Todo";
   static final todoMvcModelCode = "Mvc";

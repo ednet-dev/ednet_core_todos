@@ -1,6 +1,6 @@
 part of todo_mvc;
 
-// lib/gen/todo/models.dart
+// lib/gen/todo/i_domain_models.dart
 
 class TodoModels extends DomainModels {
 
