@@ -5,7 +5,7 @@ import "package:ednet_core/ednet_core.dart";
 import "package:todo_mvc/todo_mvc.dart";
 
 genCode() {
-  var repo = new Repository();
+  var repo = CoreRepository();
 
   var todoDomain = new Domain("Todo");
 
