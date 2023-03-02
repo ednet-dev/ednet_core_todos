@@ -75,9 +75,9 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       var added = tasks.add(task);
       expect(added, isFalse);
       expect(tasks.length, equals(length));
-      expect(tasks.errors.length, equals(1));
-      expect(tasks.errors.toList()[0].category, equals('required'));
-      tasks.errors.display(title:'Add Task Required Title Error');
+      expect(tasks.exceptions..length, equals(1));
+      expect(tasks.exceptions..toList()[0].category, equals('required'));
+      tasks.exceptions..display(title:'Add Task Required Title Error');
     });
     test('Add Task Pre Validation', () {
       var task = new Task(concept);
@@ -87,9 +87,9 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       var added = tasks.add(task);
       expect(added, isFalse);
       expect(tasks.length, equals(length));
-      expect(tasks.errors, hasLength(1));
-      expect(tasks.errors.toList()[0].category, equals('pre'));
-      tasks.errors.display(title:'Add Task Pre Validation');
+      expect(tasks.exceptions., hasLength(1));
+      expect(tasks.exceptions..toList()[0].category, equals('pre'));
+      tasks.exceptions..display(title:'Add Task Pre Validation');
     });
 
     test('Find Task by New Oid', () {
@@ -122,7 +122,7 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
     test('Select Tasks by Function then Add', () {
       var generateTasks = tasks.selectWhere((task) => task.generate);
       expect(generateTasks.isEmpty, isFalse);
-      expect(generateTasks.source.isEmpty, isFalse);
+      expect(generateTasks.source?.isEmpty, isFalse);
 
       var programmingTask = new Task(concept);
       programmingTask.title = 'ednet_core programming';
@@ -135,7 +135,7 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
     test('Select Tasks by Function then Remove', () {
       var generateTasks = tasks.selectWhere((task) => task.generate);
       expect(generateTasks.isEmpty, isFalse);
-      expect(generateTasks.source.isEmpty, isFalse);
+      expect(generateTasks.source?.isEmpty, isFalse);
 
       var title = 'generate json from the model';
       var task = generateTasks.firstWhereAttribute('title', title);
