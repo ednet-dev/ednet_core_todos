@@ -1,6 +1,6 @@
 # License
 
-[licenses] (http://opensource.org/licenses/)
+[licenses](http://opensource.org/licenses/)
 [3-clause license ("New BSD License" or "Modified BSD License")]
 (http://en.wikipedia.org/wiki/BSD_license)
 

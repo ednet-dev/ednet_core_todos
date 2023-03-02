@@ -4,7 +4,7 @@
 
 ## Description
 
-Todo.Mvc is implementation of [TodoMVC] (http://todomvc.com).
+Todo.Mvc is implementation of [TodoMVC](http://todomvc.com).
 
 ### Based On
 
