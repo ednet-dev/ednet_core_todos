@@ -1,6 +1,6 @@
 part of todo_mvc_app;
 
-class TodoApp implements ActionReactionApi, PastReactionApi {
+class TodoApp implements CommandReactionApi, PastReactionApi {
   DomainSession session;
   Tasks tasks;
 
@@ -16,7 +16,7 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
 
   TodoApp(TodoModels domain) {
     session = domain.newSession();
-    domain.startActionReaction(this);
+    domain.startCommandReaction(this);
     session.past.startPastReaction(this);
     MvcEntries model = domain.getModelEntries(TodoRepo.todoMvcModelCode);
     tasks = model.getEntry('Task');
@@ -40,7 +40,7 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
           var task = new Task(tasks.concept);
           task.title = title;
           newTodo.value = '';
-          new AddAction(session, tasks, task).doit();
+          new AddCommand(session, tasks, task).doIt();
           _possibleErrors();
         }
       }
@@ -51,24 +51,24 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
       if (tasks.left.length == 0) {
         for (Task task in tasks) {
           transaction.add(
-              new SetAttributeAction(session, task, 'completed', false));
+              new SetAttributeCommand(session, task, 'completed', false));
         }
       } else {
         for (Task task in tasks.left) {
           transaction.add(
-              new SetAttributeAction(session, task, 'completed', true));
+              new SetAttributeCommand(session, task, 'completed', true));
         }
       }
-      transaction.doit();
+      transaction.doIt();
     });
 
     _clearCompleted.onClick.listen((MouseEvent e) {
       var transaction = new Transaction('clear-completed', session);
       for (Task task in tasks.completed) {
         transaction.add(
-            new RemoveAction(session, tasks.completed, task));
+            new RemoveCommand(session, tasks.completed, task));
       }
-      transaction.doit();
+      transaction.doIt();
     });
 
     _undo.style.display = 'none';
@@ -113,8 +113,8 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
     _possibleErrors();
   }
 
-  react(ActionApi action) {
-    updateTodo(SetAttributeAction action) {
+  react(CommandApi action) {
+    updateTodo(SetAttributeCommand action) {
       if (action.property == 'completed') {
         _todos.complete(action.entity);
       } else if (action.property == 'title') {
@@ -123,30 +123,30 @@ class TodoApp implements ActionReactionApi, PastReactionApi {
     }
 
     if (action is Transaction) {
-      for (var transactionAction in action.past.actions) {
-        if (transactionAction is SetAttributeAction) {
-          updateTodo(transactionAction);
-        } else if (transactionAction is RemoveAction) {
-          if (transactionAction.undone) {
-            _todos.add(transactionAction.entity);
+      for (var transactionCommand in action.past.actions) {
+        if (transactionCommand is SetAttributeCommand) {
+          updateTodo(transactionCommand);
+        } else if (transactionCommand is RemoveCommand) {
+          if (transactionCommand.undone) {
+            _todos.add(transactionCommand.entity);
           } else {
-            _todos.remove(transactionAction.entity);
+            _todos.remove(transactionCommand.entity);
           }
         }
       }
-    } else if (action is AddAction) {
+    } else if (action is AddCommand) {
       if (action.undone) {
         _todos.remove(action.entity);
       } else {
         _todos.add(action.entity);
       }
-    } else if (action is RemoveAction) {
+    } else if (action is RemoveCommand) {
       if (action.undone) {
         _todos.add(action.entity);
       } else {
         _todos.remove(action.entity);
       }
-    } else if (action is SetAttributeAction) {
+    } else if (action is SetAttributeCommand) {
       updateTodo(action);
     }
 

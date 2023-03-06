@@ -9,9 +9,9 @@ Todo
 EDNetCore
 
 + replace preAdd with validation for title length in setTitle of Task: 
-* SetAttributeAction does not call the specific set method.
+* SetAttributeCommand does not call the specific set method.
   Thus, even if you write a validation in the specific method,
   it will not be used by EDNetCore. In future, the reflection will
   solve this problem.
-* when SetAttributeAction with length validation for title added to Task,
+* when SetAttributeCommand with length validation for title added to Task,
   there was 'Null is not subtype of bool' errorr!?

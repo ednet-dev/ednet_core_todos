@@ -256,8 +256,8 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       expect(task, isNotNull);
       task.title = 'writing a tutorial on EDNetCore';
 
-      var action = new AddAction(session, tasks, task);
-      action.doit();
+      var action = new AddCommand(session, tasks, task);
+      action.doIt();
       expect(tasks.length, equals(++length));
 
       action.undo();
@@ -271,8 +271,8 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       var task = tasks.firstWhereAttribute('title', title);
       expect(task, isNotNull);
 
-      var action = new RemoveAction(session, tasks, task);
-      action.doit();
+      var action = new RemoveCommand(session, tasks, task);
+      action.doIt();
       expect(tasks.length, equals(--length));
 
       action.undo();
@@ -286,8 +286,8 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       expect(task, isNotNull);
       task.title = 'writing a tutorial on EDNetCore';
 
-      var action = new AddAction(session, tasks, task);
-      action.doit();
+      var action = new AddCommand(session, tasks, task);
+      action.doIt();
       expect(tasks.length, equals(++length));
 
       session.past.undo();
@@ -303,9 +303,9 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       expect(task.title, equals(title));
 
       var action =
-          new SetAttributeAction(session, task, 'title',
+          new SetAttributeCommand(session, task, 'title',
               'generate from model to json');
-      action.doit();
+      action.doIt();
 
       session.past.undo();
       expect(task.title, equals(action.before));
@@ -316,16 +316,16 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
     test('Undo and Redo Transaction', () {
       var task1 = new Task(concept);
       task1.title = 'data modeling';
-      var action1 = new AddAction(session, tasks, task1);
+      var action1 = new AddCommand(session, tasks, task1);
 
       var task2 = new Task(concept);
       task2.title = 'database design';
-      var action2 = new AddAction(session, tasks, task2);
+      var action2 = new AddCommand(session, tasks, task2);
 
       var transaction = new Transaction('two adds on tasks', session);
       transaction.add(action1);
       transaction.add(action2);
-      transaction.doit();
+      transaction.doIt();
       length = length + 2;
       expect(tasks.length, equals(length));
       tasks.display(title:'Transaction Done');
@@ -341,40 +341,40 @@ testTodoMvc(CoreRepository repo, String domainCode, String modelCode) {
       tasks.display(title:'Transaction Redone');
     });
 
-    test('Reactions to Task Actions', () {
+    test('Reactions to Task Commands', () {
       var reaction = new Reaction();
       expect(reaction, isNotNull);
 
-      models.startActionReaction(reaction);
+      models.startCommandReaction(reaction);
       var task = new Task(concept);
       task.title = 'validate ednet_core documentation';
 
       var session = models.newSession();
-      var addAction = new AddAction(session, tasks, task);
-      addAction.doit();
+      var addCommand = new AddCommand(session, tasks, task);
+      addCommand.doIt();
       expect(tasks.length, equals(++length));
       expect(reaction.reactedOnAdd, isTrue);
 
       var title = 'documenting ednet_core';
-      var setAttributeAction =
-          new SetAttributeAction(session, task, 'title', title);
-      setAttributeAction.doit();
+      var setAttributeCommand =
+          new SetAttributeCommand(session, task, 'title', title);
+      setAttributeCommand.doIt();
       expect(reaction.reactedOnUpdate, isTrue);
-      models.cancelActionReaction(reaction);
+      models.cancelCommandReaction(reaction);
     });
 
   });
 }
 
-class Reaction implements ActionReactionApi {
+class Reaction implements CommandReactionApi {
 
   bool reactedOnAdd = false;
   bool reactedOnUpdate = false;
 
-  react(BasicAction action) {
-    if (action is EntitiesAction) {
+  react(BasicCommand action) {
+    if (action is EntitiesCommand) {
       reactedOnAdd = true;
-    } else if (action is EntityAction) {
+    } else if (action is EntityCommand) {
       reactedOnUpdate = true;
     }
   }

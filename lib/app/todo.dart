@@ -40,19 +40,19 @@ class Todo {
       if (e.keyCode == KeyCode.ENTER) {
         var value = edit.value.trim();
         if (value != '') {
-          new SetAttributeAction(_session, task, 'title', value).doit();
+          new SetAttributeCommand(_session, task, 'title', value).doIt();
         }
       }
     });
 
     _completed = _todo.querySelector('.completed');
     _completed.onClick.listen((MouseEvent e) {
-      new SetAttributeAction(_session, task, 'completed',
-          !task.completed).doit();
+      new SetAttributeCommand(_session, task, 'completed',
+          !task.completed).doIt();
     });
 
     _todo.querySelector('.remove').onClick.listen((MouseEvent e) {
-      var action = new RemoveAction(_session, _tasks, task).doit();
+      var action = new RemoveCommand(_session, _tasks, task).doIt();
     });
 
     return _todo;
