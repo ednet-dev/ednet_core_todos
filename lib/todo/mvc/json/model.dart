@@ -8,11 +8,11 @@ part of todo_mvc;
 var todoMvcModelJson = r'''
 {
     "width":990,
-    "lines":[
+    "relations":[
 
     ],
     "height":580,
-    "boxes":[
+    "concepts":[
         {
             "entry":true,
             "name":"Task",
@@ -20,7 +20,7 @@ var todoMvcModelJson = r'''
             "y":147,
             "width":80,
             "height":80,
-            "items":[
+            "attributes":[
                 {
                     "sequence":20,
                     "category":"required",
