@@ -34,7 +34,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 library todo_mvc_app;
 
-import "dart:convert";
 import "dart:html";
 
 import 'package:ednet_core/ednet_core.dart';
@@ -45,3 +44,12 @@ import 'package:todo_mvc/todo_mvc.dart';
 part 'app/todo_app.dart';
 part 'app/todos.dart';
 part 'app/todo.dart';
+
+void main() {
+  var repo = new TodoRepo();
+  TodoModels domain =
+      repo.getDomainModels(TodoRepo.todoDomainCode) as TodoModels;
+  new TodoApp(domain);
+
+  var json = JSON.decode('{"title":"test","completed":false}');
+}
